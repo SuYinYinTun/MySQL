@@ -1,0 +1,33 @@
+Mysql Data Type
+----------------------------------------------------------
+String Data Type
+
+1.	CHAR 		0->255
+2.	VARCHAR		0->65535
+3.	TEXT		0->65535
+4.	TINYTEXT	1->255
+5.	MEDIUMTEXT	256->16777215(16MB)
+6.	LONGTEXT	16777216->(4GB)
+7.	BINARY		simalar with CHAR (it use for store the photo)
+8.	VARBINARY	0->65535
+9.	BLOB()		0->65535
+10.	TINYBLOB()	1->255
+11.	MEDIUMBLOB()256->16777215(16MB)
+12. LONGBLOB()	16777216->(4GB)
+13.	ENUM		
+14. SET
+
+------------------------------------------------------------
+
+Numberic Data Type
+1.	BIT			1
+2.	BOOL		0=false   | other= true
+3.	BOOLEN	
+4.	TINYINT		0->255
+5.	SMALLINT	0->65535
+6.	MEDIUMINT	0->16777215	(16MD)
+7.	INT 		0->4GB
+8.	BININT		0->4GB
+
+9.	DECIMAL		FINANCE(.5 ကျော်ရင် 1 တိုးတယ်	)
+10.	FLOAT		SCIENTIFIC('0.0' point ရဲ့နောက်မာ ဘယ်လောက်ဖစ်ဖစ်မတိုးဘူး)

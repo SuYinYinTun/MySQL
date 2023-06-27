@@ -1,0 +1,55 @@
+Dafault==>
+
+
+CREATE TABLE tvs(
+brand VARCHAR(255) DEFAULT 'unnamed',
+made VARCHAR(255)
+);
+
+
+INSERT INTO tvs(brand,made)
+VALUES("LGTV","USA");
+
+
+INSERT INTO tvs(brand)
+VALUES('sony');
+
+
+INSERT INTO tvs(made)
+VALUES('china');
+
+INSERT INTO tvs()
+VALUES();
+
+
+----------------------------------------------------------
+Not null & Dafault==> အာ့လိုလည်းသုံးလို့ရတယ် (default ပေးထားတာတွေပေါ်တယ်)
+
+CREAT TABLES tvs(
+brand VARCHAR(255) NOT NULL DEFAULT 'sony',
+made VARCHAR(255) NOT NULL DEFAULT 'USA'
+);
+
+INSERT INTO tvs(brand,made)
+VALUES('samsung','korea');
+
+INSERT INTO tvs(brand)
+VALUES('mi');
+
+INSERT INTO tvs(made)
+VALUES('china');
+
+INSERT INTO tvs()
+VALUES();
+
+INSERT INTO tvs(brand,made)  //ERROR
+VALUES("sharp",NULL);
+
+
+
+
+
+
+
+
+

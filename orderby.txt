@@ -1,0 +1,35 @@
+ASC	  A->Z
+DESC  Z->A
+
+
+SELECT * FROM abc
+ORDER BY colname ASC/DESC
+
+
+Default ASC
+
+SELECT * FROM employess ORDER BY 2;
+
+SELECT * FROM employess ORDER BY 2 ASC;
+
+SELECT * FROM employess ORDER BY 2 DESC;
+
+SELECT * FROM employess ORDER BY id ASC;
+
+MariaDB [rf001]> SELECT * FROM employess WHERE address = 'Yangon' ORDER BY salary DESC;
+
+
+-----------------------------------------------------------
+
+SELECT * FROM tablename WHER condition LIMIT number;  ထုတ်ချင်တာကို limit လုပ်ပြီးထုတ်တာ
+
+SELECT * FROM employess LIMIT 3;
+
+SELECT name,email,age FROM employess WHERE age > 18 LIMIT 3;
+
+SELECT name,email,age FROM employess WHERE age>18 ORDER BY name ASC LIMT 3;
+
+SELECT id,name,address,salary FROM employess WHERE salary>150000 ORDER BY salary LIMIT 2;
+
+
+

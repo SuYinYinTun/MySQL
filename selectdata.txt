@@ -1,0 +1,160 @@
+//AND OR NOT//
+
+CREATE TABLE employees(
+id INT NOT NULL PRIMARY KEY,
+name VARCHAR(255),
+age INT,
+email VARCHAR(255),
+address VARCHAR(255),
+salary INT,
+
+);
+
+INSERT INTO employees(id,name,email,age,address,salary)
+VALUES(1,"Mya Mya","myamay@gamil.com",18,"Yangon",200000);
+
+
+INSERT INTO employees(id,name,email,age,address,salary)
+VALUES(2,"Hla Hla","hlahal@gamil.com",19,"Mandalay",220000),
+(3,"Kyaw Kyaw","kyawkyaw@gamil.com",18,"Mawlamyine",1800000),
+(4,"Aye Aye","ayeaye@gamil.com",19,"Myeik",300000),
+(5,"Kyaw Gyi","kyawgyi@gamil.com",33,"Bago",3500000);
+
+INSERT INTO employees(id,name,email,age,address,salary)
+VALUES(6,"Shwe Shwe","shweshwe@gamil.com",22,"Dawei",190000),
+(7,"Zin Zin","zinzin@gamil.com",18,"Yangon",320000),
+(8,"Su Su","susu@gamil.com",20,"Mandalay",230000),
+(9,"Zaya","zaya@gamil.com",19,"Bago",100000),
+(10,"Kaung Kaung","kaungkaung@gamil.com",32,"Myeik",1000000);
+
+
+
+>
+<
+=
+>=
+<=
+<> is not equal (it same != )
+BETWEEN
+LIKE is equale (it same =)
+IN
+
+
+SELECT name,salary FROM employees WHEAR salary<200000; 
+
+---------------------------------------------------------
+
+AND / OR / NOT
+
+==>AND
+
+SELECT * FROM employees WHERE address = "Yangon" AND salary > 200000;
+
+SELECT * FROM employees WHERE address = "Yangon" AND salary < 200000;
+
+SELECT * FROM employees WHERE address = "Yangon" AND salary <= 200000;
+
+SELECT * FROM employees WHERE address = "Yangon" AND;
+
+SELECT name,email,address FROM employees WHERE AND salary>=300000;
+
+
+==>OR
+
+
+SELECT * FROM employees WHERE address = "Yangon" OR salary > 200000;
+
+SELECT * FROM employees WHERE address = "Yangon" OR salary < 200000;
+
+SELECT * FROM employees WHERE address = "Yangon" OR salary <= 200000;
+
+SELECT * FROM employees WHERE address = "Yangon";
+
+SELECT name,email,address FROM employees WHERE OR salary>=300000;
+
+==>NOT
+
+SELECT * FROM employees WHERE NOT address = "Yangon";
+
+
+---------------------------------------------------------
+
+==>WHERE
+
+CRUD => is CREATE / READ / UPDATE / DELETE
+
+SELECT * FROM abc
+WHERE ...
+
+SELECT col1,col3 FROM abc
+WHERE ...
+
+
+
+==>LIKE is equale (it same =)
+
+SELECT id,name,address FROM employees WHERE name ="mya mya";
+
+SELECT id,name,address FROM employees WHERE name LIKE "mya mya";
+
+---------------------------------------------------------------
+
+==>DELETE (table တွေကို delete လုပ်ခြင်း)
+
+
+DELETE FROM tablename WHER condition; // table ထဲက data တွေကို ဖျတ်တာ
+
+DELETE FROM tablename; // table တစ်ခုလုံးကို ဖျတ်တာ
+
+
+DELETE FROM employees WHERE name ="su su"; // su su နာမည်နဲ့ row ပြတ်သွားမယ်။
+
+DELETE FROM employees WHERE address ="yangon"; // yangon addressနဲ့ row ပြတ်သွားမယ်။
+
+
+
+=> Update Data
+
+Syntax
+
+UPDATE tablename
+SET column1=value,column2=value,........
+WHER condition........
+
+UPDATE employees
+SET name="Ko Ko"
+WHER id=1;
+
+UPDATE employees
+SET address="Myeik"
+WHER id=7;
+
+UPDATE employees
+SET salary=100000
+WHER id=3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

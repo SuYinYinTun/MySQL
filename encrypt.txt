@@ -1,0 +1,132 @@
+=>SHA1();    //ထည့်ထားတဲ့ data တွေကို hack တဲ့လူတွေအမျန်မမြင်အောင်စာတွေအများကြီးလျောက်လုပ်တာ
+=>MD5();
+
+Eg=>
+
+SELECT SHA1('admin');
++------------------------------------------+
+| SHA1('admin')                            |
++------------------------------------------+
+| d033e22ae348aeb5660fc2140aec35850c4da997 |
++------------------------------------------+
+
+
+
+SELECT MD5('admin');
++----------------------------------+
+| MD5('admin')                     |
++----------------------------------+
+| 21232f297a57a5a743894a0e4a801fc3 |
++----------------------------------+
+
+ SELECT MD5("admin123#555");
++----------------------------------+
+| MD5("admin123#555")              |
++----------------------------------+
+| 575d78b4e6019228cddbb7eee4c6bb58 |
++----------------------------------+
+............................................................
+
+NSERT INTO accounts(name,email,password)		//အာ့လိုဘဲရေးရင် hacker က psw ကိုတန်းရသွားမယ်
+    -> VALUES("maung maung","mgmg@gmail.com",123),
+    -> ("ko ko","koko@gmail.com","koko123");
+
+
+MariaDB [rf001]> SELECT * FROM accounts;
++----+-------------+----------------+----------+
+| id | name        | email          | password |
++----+-------------+----------------+----------+
+|  1 | maung maung | mgmg@gmail.com | 123      |
+|  2 | ko ko       | koko@gmail.com | koko123  |
++----+-------------+----------------+----------+
+
+
+INSERT INTO accounts(name,email,password)
+    -> VALUES("kyaw gyi","kyawgyi@gmail.com",SHA1("kyawgyi123"));  //အာ့လို SHA1ခံရေးလိုက်ရင် haker က psw တန်းမရတော့ဘူး but SHA1 decrypt မာဖြေလို့ရနိုင်တယ်
+    																// psw က ၈လုံးအထက်ရျိပီး capatal, small letterတွေ, @#$%, အာ့လိုဟာတွေပြည့်စုံနေရင်တော့ rainbow table နဲ့မ ရတယ်
+
+SELECT * FROM accounts;
++----+-------------+-------------------+------------------------------------------+
+| id | name        | email             | password                                 |
++----+-------------+-------------------+------------------------------------------+
+|  1 | maung maung | mgmg@gmail.com    | 123                                      |
+|  2 | ko ko       | koko@gmail.com    | koko123                                  |
+|  3 | kyaw gyi    | kyawgyi@gmail.com | 14c0824a2bd08332ae30413b9431520bb3de8277 |
++----+-------------+-------------------+------------------------------------------+
+
+
+ INSERT INTO accounts(name,email,password)
+    -> VALUES("yin yin","yin@gmail.com",MD5("yinyinyay123"));//အာ့လို MD5ခံရေးလိုက်ရင်လည်း haker က psw တန်းမရတော့ဘူး but MD5 decrypt မာဖြေလို့ရနိုင်တယ်
+
+
+ SELECT * FROM accounts;
++----+-------------+-------------------+------------------------------------------+
+| id | name        | email             | password                                 |
++----+-------------+-------------------+------------------------------------------+
+|  1 | maung maung | mgmg@gmail.com    | 123                                      |
+|  2 | ko ko       | koko@gmail.com    | koko123                                  |
+|  3 | kyaw gyi    | kyawgyi@gmail.com | 14c0824a2bd08332ae30413b9431520bb3de8277 |
+|  4 | yin yin     | yin@gmail.com     | 7abe8738e3aa3cf90958bafcbeb9510e         |
++----+-------------+-------------------+------------------------------------------+
+
+ INSERT INTO accounts(name,email,password)
+    -> VALUES("Aye Aye","aye@gmail.com",MD5(SHA1("ayeayeyay123")));  //အာ့လို 2ခုလုံးခံလိုက်ရင်တော့အလွယ်တကူမရနိုင်တော့ဘူး
+
+
+ SELECT * FROM accounts;
++----+-------------+-------------------+------------------------------------------+
+| id | name        | email             | password                                 |
++----+-------------+-------------------+------------------------------------------+
+|  1 | maung maung | mgmg@gmail.com    | 123                                      |
+|  2 | ko ko       | koko@gmail.com    | koko123                                  |
+|  3 | kyaw gyi    | kyawgyi@gmail.com | 14c0824a2bd08332ae30413b9431520bb3de8277 |
+|  4 | yin yin     | yin@gmail.com     | 7abe8738e3aa3cf90958bafcbeb9510e         |
+|  5 | Aye Aye     | aye@gmail.com     | d2dd69738402d64fcd1f4c1ea03452a1         |
++----+-------------+-------------------+------------------------------------------+
+
+
+INSERT INTO accounts(name,email,password)
+    -> VALUES("Tun Tun","tun@gmail.com",SHA1(MD5("tuntun51@11")));  //အာ့လို 2ခုလုံးခံလိုက်ရင်တော့အလွယ်တကူမရနိုင်တော့ဘူး
+
+ SELECT * FROM accounts;
++----+-------------+-------------------+------------------------------------------+
+| id | name        | email             | password                                 |
++----+-------------+-------------------+------------------------------------------+
+|  1 | maung maung | mgmg@gmail.com    | 123                                      |
+|  2 | ko ko       | koko@gmail.com    | koko123                                  |
+|  3 | kyaw gyi    | kyawgyi@gmail.com | 14c0824a2bd08332ae30413b9431520bb3de8277 |
+|  4 | yin yin     | yin@gmail.com     | 7abe8738e3aa3cf90958bafcbeb9510e         |
+|  5 | Aye Aye     | aye@gmail.com     | d2dd69738402d64fcd1f4c1ea03452a1         |
+|  6 | Tun Tun     | tun@gmail.com     | 76fe250156a8cda47e96c3ec3f5f6e96bdca9978 |
++----+-------------+-------------------+------------------------------------------+
+
+
+ INSERT INTO accounts(name,email,password)
+    -> VALUES("San San","san@gamil.com",SHA1(MD5(SHA1("sanSs12*@a2"))));	//အာ့လိုတွေ 3ခု 4ခုလည်းခံလို့ရတယ်
+
+SELECT * FROM accounts;
++----+-------------+-------------------+------------------------------------------+
+| id | name        | email             | password                                 |
++----+-------------+-------------------+------------------------------------------+
+|  1 | maung maung | mgmg@gmail.com    | 123                                      |
+|  2 | ko ko       | koko@gmail.com    | koko123                                  |
+|  3 | kyaw gyi    | kyawgyi@gmail.com | 14c0824a2bd08332ae30413b9431520bb3de8277 |
+|  4 | yin yin     | yin@gmail.com     | 7abe8738e3aa3cf90958bafcbeb9510e         |
+|  5 | Aye Aye     | aye@gmail.com     | d2dd69738402d64fcd1f4c1ea03452a1         |
+|  6 | Tun Tun     | tun@gmail.com     | 76fe250156a8cda47e96c3ec3f5f6e96bdca9978 |
+|  7 | San San     | san@gamil.com     | 1e41d7fa4355da50cacac9a9d5491d00c9651e6c |
++----+-------------+-------------------+------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

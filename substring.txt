@@ -1,0 +1,27 @@
+SELECT SUBSTRING('This is tomato',1,3);   (1 is start, 3 is spacing. So you can see "Thi") 1 က စမတ်, 2က စာလုံးအရေအတွက်
+
+SELECT SUBSTR('This is tomato......',1,10);
+
+
+Eg=>
+
+
+ SELECT SUBSTRING('This is all about of tomato see more...',28,12);         (အာ့လိုဆို see more... ဘဲပေါ်မယ်)
+
+
+
+ SELECT SUBSTRING(email,1,3)FROM employess;  (အာ့လိုဆို email title အောက်က emailလေးတွေက 3လုံးပေါ်မယ်)
+
+
+ MariaDB [rf001]> SELECT SUBSTR(salary,1,3)AS salary FROM employess;		(အာ့လိုဆို salary title အောက်က salaryလေးတွေက 3လုံးပေါ်မယ်။ AS salaryကြောင့် titleက salary လို့ပေါ်နေမယ်။ ဒါပေမယ့် ပေါ်ဘဲပေါ်မယ် databaseမာတော့မပြောင်းဘူး)
+
+
+ -----------------------------------------------------------------------------
+
+
+ SELECT REPLACE("Hello Mello","Mello","Zello"); (replace လုပ်တာ ခုလိုဆို Mello က Zello ပြောင်းသွားမယ်)
+
+
+ SELECT REPLACE(name,'Ko Ko','Aung Aung')FROM employess;   	(အာ့လိုဆို email title အောက်က emailလေးတွေက 3လုံးဘဲပေါ်မယ်/ ကြည့်တဲ့အချိန်ဘဲ ပြောင်းသွားတာ database မာတော့မပြောင်းဘူး) 
+
+

@@ -1,0 +1,391 @@
+=>JOIN                     //Table  တွေမာ အခိုင်မာဆုံး column က id column ကအခိုင်မာဆုံးဘဲ
+						   // Join လုပ်ရင် id column ကအရေးကြီးတယ် // id coloumကို focus လုပ်ပြီး join တယ်
+1. INNER JOIN
+2. LEFT JOIN
+3. RIGHT JOIN
+5. FULL JOIN
+..........................
+
+CREATE TABLE IF NOT EXISTS customers(
+id INT AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(255),
+lastname VARCHAR(255),
+email VARCHAR(255)
+);
+
+INSERT INTO customers(firstname,lastname,email)
+VALUES('aung','aung','aung@gmail.com'),
+('maung','maung','maung@gmail.com'),
+('ko','ko','koko@gmail.com'),
+('kyaw kyaw','Lin','kyawkyaw@gmail.com'),
+('Thaw','Khant','thawkhant@gmail.com'),
+('Thae','Thae','thae@gmail.com');
+
+
+
+CREATE TABLE IF NOT EXISTS orders(
+id INT AUTO_INCREMENT PRIMARY KEY,
+orderdate DATE,
+amount INT(100),
+customer_id INT
+);
+
+
+INSERT INTO orders(orderdate,amount,customer_id)
+VALUES("2023-01-06",30000,2),
+("2023-01-01",6000,6),
+("2023-01-12",80000,4);
+
+
+SELECT * FROM  customers;
++----+-----------+----------+---------------------+
+| id | firstname | lastname | email               |
++----+-----------+----------+---------------------+
+|  1 | aung      | aung     | aung@gmail.com      |
+|  2 | maung     | maung    | maung@gmail.com     |
+|  3 | ko        | ko       | koko@gmail.com      |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |
+|  5 | Thaw      | Khant    | thawkhant@gmail.com |
+|  6 | Thae      | Thae     | thae@gmail.com      |
++----+-----------+----------+---------------------+
+
+
+SELECT * FROM  orders;
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2023-01-06 |  30000 |           2 |
+|  2 | 2023-01-01 |   6000 |           6 |
+|  3 | 2023-01-12 |  80000 |           4 |
++----+------------+--------+-------------+
+
+ SELECT * FROM customers,orders;     //အာ့လိုပေါင်းထုတ်ကြည့်လို့ရတယ်
++----+-----------+----------+---------------------+----+------------+--------+-------------+
+| id | firstname | lastname | email               | id | orderdate  | amount | customer_id |
++----+-----------+----------+---------------------+----+------------+--------+-------------+
+|  1 | aung      | aung     | aung@gmail.com      |  1 | 2023-01-06 |  30000 |           2 |
+|  1 | aung      | aung     | aung@gmail.com      |  2 | 2023-01-01 |   6000 |           6 |
+|  1 | aung      | aung     | aung@gmail.com      |  3 | 2023-01-12 |  80000 |           4 |
+|  2 | maung     | maung    | maung@gmail.com     |  1 | 2023-01-06 |  30000 |           2 |
+|  2 | maung     | maung    | maung@gmail.com     |  2 | 2023-01-01 |   6000 |           6 |
+|  2 | maung     | maung    | maung@gmail.com     |  3 | 2023-01-12 |  80000 |           4 |
+|  3 | ko        | ko       | koko@gmail.com      |  1 | 2023-01-06 |  30000 |           2 |
+|  3 | ko        | ko       | koko@gmail.com      |  2 | 2023-01-01 |   6000 |           6 |
+|  3 | ko        | ko       | koko@gmail.com      |  3 | 2023-01-12 |  80000 |           4 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |  1 | 2023-01-06 |  30000 |           2 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |  2 | 2023-01-01 |   6000 |           6 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |  3 | 2023-01-12 |  80000 |           4 |
+|  5 | Thaw      | Khant    | thawkhant@gmail.com |  1 | 2023-01-06 |  30000 |           2 |
+|  5 | Thaw      | Khant    | thawkhant@gmail.com |  2 | 2023-01-01 |   6000 |           6 |
+|  5 | Thaw      | Khant    | thawkhant@gmail.com |  3 | 2023-01-12 |  80000 |           4 |
+|  6 | Thae      | Thae     | thae@gmail.com      |  1 | 2023-01-06 |  30000 |           2 |
+|  6 | Thae      | Thae     | thae@gmail.com      |  2 | 2023-01-01 |   6000 |           6 |
+|  6 | Thae      | Thae     | thae@gmail.com      |  3 | 2023-01-12 |  80000 |           4 |
++----+-----------+----------+---------------------+----+------------+--------+-------------+
+
+
+MariaDB [rf001]> SELECT * FROM orders,customers;    //အာ့လိုပေါင်းထုတ်ကြည့်လို့ရတယ်
++----+------------+--------+-------------+----+-----------+----------+---------------------+
+| id | orderdate  | amount | customer_id | id | firstname | lastname | email               |
++----+------------+--------+-------------+----+-----------+----------+---------------------+
+|  1 | 2023-01-06 |  30000 |           2 |  1 | aung      | aung     | aung@gmail.com      |
+|  2 | 2023-01-01 |   6000 |           6 |  1 | aung      | aung     | aung@gmail.com      |
+|  3 | 2023-01-12 |  80000 |           4 |  1 | aung      | aung     | aung@gmail.com      |
+|  1 | 2023-01-06 |  30000 |           2 |  2 | maung     | maung    | maung@gmail.com     |
+|  2 | 2023-01-01 |   6000 |           6 |  2 | maung     | maung    | maung@gmail.com     |
+|  3 | 2023-01-12 |  80000 |           4 |  2 | maung     | maung    | maung@gmail.com     |
+|  1 | 2023-01-06 |  30000 |           2 |  3 | ko        | ko       | koko@gmail.com      |
+|  2 | 2023-01-01 |   6000 |           6 |  3 | ko        | ko       | koko@gmail.com      |
+|  3 | 2023-01-12 |  80000 |           4 |  3 | ko        | ko       | koko@gmail.com      |
+|  1 | 2023-01-06 |  30000 |           2 |  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |
+|  2 | 2023-01-01 |   6000 |           6 |  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |
+|  3 | 2023-01-12 |  80000 |           4 |  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |
+|  1 | 2023-01-06 |  30000 |           2 |  5 | Thaw      | Khant    | thawkhant@gmail.com |
+|  2 | 2023-01-01 |   6000 |           6 |  5 | Thaw      | Khant    | thawkhant@gmail.com |
+|  3 | 2023-01-12 |  80000 |           4 |  5 | Thaw      | Khant    | thawkhant@gmail.com |
+|  1 | 2023-01-06 |  30000 |           2 |  6 | Thae      | Thae     | thae@gmail.com      |
+|  2 | 2023-01-01 |   6000 |           6 |  6 | Thae      | Thae     | thae@gmail.com      |
+|  3 | 2023-01-12 |  80000 |           4 |  6 | Thae      | Thae     | thae@gmail.com      |
++----+------------+--------+-------------+----+-----------+----------+---------------------+
+
+
+ SELECT * FROM orders WHERE customer_id =2;  //orderထဲက customer_id no2 ကိုထုတ်ကြည့်တာ
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2023-01-06 |  30000 |           2 |
++----+------------+--------+-------------+
+
+
+ SELECT * FROM orders WHERE customer_id =4; //orderထဲက customer_id no4 ကိုထုတ်ကြည့်တာ
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  3 | 2023-01-12 |  80000 |           4 |
++----+------------+--------+-------------+
+
+
+
+
+SELECT * FROM orders WHERE customer_id = (      //customers table ထဲက email thae@gmail.com ဖစ်တဲ့သူရဲ့ customer_idကို order tableမာ ကြည့်တာ
+    -> SELECT id FROM customers
+    -> WHERE email = "thae@gmail.com"
+    -> );
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  2 | 2023-01-01 |   6000 |           6 |
++----+------------+--------+-------------+
+
+
+SELECT amount FROM orders WHERE customer_id =(
+    -> SELECT id FROM customers
+    -> WHERE firstname ="maung");
++--------+
+| amount |
++--------+
+|  30000 |
++--------+
+
+
+
+
+
+..................................................................................................
+
+=>INNER JOIN
+
+CREATE TABLE IF NOT EXISTS customers(
+id INT AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(255),
+lastname VARCHAR(255),
+email VARCHAR(255)
+);
+
+INSERT INTO customers(firstname,lastname,email)
+VALUES('aung','aung','aung@gmail.com'),
+('maung','maung','maung@gmail.com'),
+('ko','ko','koko@gmail.com'),
+('kyaw kyaw','Lin','kyawkyaw@gmail.com'),
+('Thaw','Khant','thawkhant@gmail.com'),
+('Thae','Thae','thae@gmail.com');
+
+
+
+CREATE TABLE IF NOT EXISTS orders(
+id INT AUTO_INCREMENT PRIMARY KEY,
+orderdate DATE,
+amount INT(100),
+customer_id INT,
+FOREIGN KEY(customer_id) REFERENCES customers(id)   //FOREIGN KEYက customer id ကို မထပ်အောင်လုပ်တာ
+);
+
+INSERT INTO orders(orderdate,amount,customer_id)
+VALUES("2023-01-06",30000,2),
+("2023-01-01",6000,6),
+("2023-01-12",80000,4);
+
+ပထမနည်း
+SELECT * FROM customers,orders                //customers table နဲ့ orders table 2ခုထဲက customersထဲကidနဲ့ ordersထဲကcustomer_idမာရျိတဲ့ idတူတာကိုထုတ်တာ
+    -> WHERE customers.id = orders.customer_id;  // customers.id က customers ထဲက idလို့ဆိုလို dot(.)လေးကဆက်ပေးတာ
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+| id | firstname | lastname | email              | id | orderdate  | amount | customer_id |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+|  2 | maung     | maung    | maung@gmail.com    |  1 | 2023-01-06 |  30000 |           2 |
+|  6 | Thae      | Thae     | thae@gmail.com     |  2 | 2023-01-01 |   6000 |           6 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com |  3 | 2023-01-12 |  80000 |           4 |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+
+
+ဒုတိယနည်း
+SELECT * FROM customers               //customers table နဲ့ orders table 2ခုကို join ပီးတော့ customersထဲကidနဲ့ordersထဲကcustomer_idမာရျိတဲ့ idတူတာကိုထုတ်တာ
+-> JOIN orders
+    -> ON customers.id = orders.customer_id;
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+| id | firstname | lastname | email              | id | orderdate  | amount | customer_id |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+|  2 | maung     | maung    | maung@gmail.com    |  1 | 2023-01-06 |  30000 |           2 |
+|  6 | Thae      | Thae     | thae@gmail.com     |  2 | 2023-01-01 |   6000 |           6 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com |  3 | 2023-01-12 |  80000 |           4 |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+
+
+တတိယနည်း          //customers table နဲ့ orders table 2ခုကို inner joinနဲ့ join ပီးတော့ customersထဲကidနဲ့ordersထဲကcustomer_idမာရျိတဲ့ idတူတာကိုထုတ်တာ
+SELECT * FROM customers
+    -> INNER JOIN orders
+    -> ON customers.id = orders.customer_id;
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+| id | firstname | lastname | email              | id | orderdate  | amount | customer_id |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+|  2 | maung     | maung    | maung@gmail.com    |  1 | 2023-01-06 |  30000 |           2 |
+|  6 | Thae      | Thae     | thae@gmail.com     |  2 | 2023-01-01 |   6000 |           6 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com |  3 | 2023-01-12 |  80000 |           4 |
++----+-----------+----------+--------------------+----+------------+--------+-------------+
+
+
+SELECT firstname,lastname,orderdate,amount
+    -> FROM customers
+    -> INNER JOIN orders
+    -> ON customers.id = orders.customer_id;
++-----------+----------+------------+--------+
+| firstname | lastname | orderdate  | amount |
++-----------+----------+------------+--------+
+| maung     | maung    | 2023-01-06 |  30000 |
+| Thae      | Thae     | 2023-01-01 |   6000 |
+| kyaw kyaw | Lin      | 2023-01-12 |  80000 |
++-----------+----------+------------+--------+
+
+
+........................................................................................................................
+
+=>LEFT JOIN  //customers table နဲ့ orders table 2ခုကို left joinနဲ့ join ပီးတော့ customersထဲကidနဲ့ordersထဲကcustomer_idမာရျိတဲ့ idတူတာကိုထုတ်တာ(ON က mysqlရဲ့ code အာ့လို ONခံပီးရေးပေးရတယ်)  //left join မို့ leftဖက်မာရျိတဲ့ customers tableထဲမာရျိတဲ့ data အကုန်ပါလာမယ်
+
+SELECT * FROM customers
+    -> LEFT JOIN orders
+    -> ON customers.id = orders.customer_id;
++----+-----------+----------+---------------------+------+------------+--------+-------------+
+| id | firstname | lastname | email               | id   | orderdate  | amount | customer_id |
++----+-----------+----------+---------------------+------+------------+--------+-------------+
+|  2 | maung     | maung    | maung@gmail.com     |    1 | 2023-01-06 |  30000 |           2 |
+|  6 | Thae      | Thae     | thae@gmail.com      |    2 | 2023-01-01 |   6000 |           6 |
+|  4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |    3 | 2023-01-12 |  80000 |           4 |
+|  1 | aung      | aung     | aung@gmail.com      | NULL | NULL       |   NULL |        NULL |
+|  3 | ko        | ko       | koko@gmail.com      | NULL | NULL       |   NULL |        NULL |
+|  5 | Thaw      | Khant    | thawkhant@gmail.com | NULL | NULL       |   NULL |        NULL |
++----+-----------+----------+---------------------+------+------------+--------+-------------+
+
+...................................................................................................................
+
+=>RIGHT JOIN    //customers table နဲ့ orders table 2ခုကို right joinနဲ့ join ပီးတော့ customersထဲကidနဲ့ordersထဲကcustomer_idမာရျိတဲ့ idတူတာကိုထုတ်တာ //right join မို့ rightဖက်မာရျိတဲ့ orders tableထဲမာရျိတဲ့ data အကုန်ပါလာမယ်
+
+SELECT * FROM customers
+    -> RIGHT JOIN orders
+    -> ON customers.id = orders.customer_id;
++------+-----------+----------+--------------------+----+------------+--------+-------------+
+| id   | firstname | lastname | email              | id | orderdate  | amount | customer_id |
++------+-----------+----------+--------------------+----+------------+--------+-------------+
+|    2 | maung     | maung    | maung@gmail.com    |  1 | 2023-01-06 |  30000 |           2 |
+|    6 | Thae      | Thae     | thae@gmail.com     |  2 | 2023-01-01 |   6000 |           6 |
+|    4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com |  3 | 2023-01-12 |  80000 |           4 |
++------+-----------+----------+--------------------+----+------------+--------+-------------+
+
+
+....................................................................................................................
+
+=>FULL JOIN //UNION JOIN  //full join ကိုသုံးရင် left join နဲ့ right join ထဲမာ UNION ခံရေးရတယ် full မို့ table 2ခုလုံးမာရျိတာအကုန်ပေါ်တယတ
+
+SELECT * FROM customers
+    -> LEFT JOIN orders
+    -> ON customers.id = orders.customer_id
+    -> UNION
+    -> SELECT * FROM customers
+    -> RIGHT JOIN orders
+    -> ON customers.id = orders.customer_id;
++------+-----------+----------+---------------------+------+------------+--------+-------------+
+| id   | firstname | lastname | email               | id   | orderdate  | amount | customer_id |
++------+-----------+----------+---------------------+------+------------+--------+-------------+
+|    2 | maung     | maung    | maung@gmail.com     |    1 | 2023-01-06 |  30000 |           2 |
+|    6 | Thae      | Thae     | thae@gmail.com      |    2 | 2023-01-01 |   6000 |           6 |
+|    4 | kyaw kyaw | Lin      | kyawkyaw@gmail.com  |    3 | 2023-01-12 |  80000 |           4 |
+|    1 | aung      | aung     | aung@gmail.com      | NULL | NULL       |   NULL |        NULL |
+|    3 | ko        | ko       | koko@gmail.com      | NULL | NULL       |   NULL |        NULL |
+|    5 | Thaw      | Khant    | thawkhant@gmail.com | NULL | NULL       |   NULL |        NULL |
++------+-----------+----------+---------------------+------+------------+--------+-------------+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+=>UNIQUE KEY   //unique key က ထည့်ပီးသာ data ထပ်ထည့်လို့မရအောင်သုံးတာ
+
+CREATE TABLE IF NOT EXISTS students(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255),
+email VARCHAR(255) NOT NULL UNIQUE,    <==အာလို unique သုံးလိုက်ရင် ထည့်ပီးသား တူတဲ့ email ထည့်လို့မရတော့ဘူး
+phone VARCHAR(255)
+);
+
+INSERT INTO students(name,email,phone)
+VALUES("Ko Ko","koko@gmail.com","094658515523"),
+("mg mg","mgmg@gmail.com","093245625453");
+
+ SELECT * FROM students;
++----+-------+----------------+--------------+
+| id | name  | email          | phone        |
++----+-------+----------------+--------------+
+|  1 | Ko Ko | koko@gmail.com | 094658515523 |
+|  2 | mg mg | mgmg@gmail.com | 093245625453 |
++----+-------+----------------+--------------+
+
+
+ INSERT INTO studentss(name,email,phone)         
+    -> VALUES("Mya Mya","koko@gmail.com","091122355663");
+ERROR 1062 (23000): Duplicate entry 'koko@gmail.com' for key 'email'  //ထည့်ရင် အာ့လို error ပြတယ်
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+=>EVENT
+
+CREATE TABLE IF NOT EXISTS passwords(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+password INT(50),
+status INT DEFAULT 1    //status က 1ဖစ်နေရင်သုံးလို့ရမယ် 0ဖစ်သွားရင်မရတော့အောင်ထည့်တာ       //ဒီည12နာရီဆိုတာနဲ့ status က false ဖစ်အောင်လုပ်တာ
+);
+
+
+INSERT INTO passwords(name,password)
+VALUES("guest102","12345"),
+("guest007","12345"),
+("guest603","12345");
+
+
+SELECT * FROM passwords;
++----+----------+----------+--------+
+| id | name     | password | status |
++----+----------+----------+--------+
+|  1 | guest102 |    12345 |      1 |
+|  2 | guest007 |    12345 |      1 |
+|  3 | guest603 |    12345 |      1 |
++----+----------+----------+--------+
+
+ပထမနည်း
+
+CREATE EVENT passwords
+ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 30 SECOND  //30s နေရင် 1 တွေပျောက်ပီး ps ပြောင်းအောင်ရေးပေးတာ
+DO
+DELETE FROM password WHERE status = 1;
+
+ဒုတိယနည်း
+
+CREATE EVENT passwords			//start time ကနေ end time ရောက်သွားရင် 1 နေရာမာ 0 ကိုအစားထိုးလိုက်မယ်။ အာ့ကြောင့် ps က ပြောင်းသွားမယ် 
+ON SCHEDULE EVERY 1 DAY
+STARTS '2023-01-06 10:34:00'
+ENDS '2023-01-06 10:35:00'
+DO
+UPDATE passwords SET status = 0
+WHERE status =1;
+
+
+
+
+DROP EVENT IF EXISTS passwords;  //အပေါ်က EVENT ကိုပြန်ဖျတ်တဲ့နည်း
+
+SHOW EVENT; // လုပ်ထားတဲ့ EVENT ကိုကြည့်တာ
+
+MariaDB [rf001]> SHOW EVENTS;  //လုပ်ထားတဲ့ event အာ့လိုပေါ်တယ်။
++-------+-----------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+---------------------+---------+------------+----------------------+----------------------+--------------------+
+| Db    | Name      | Definer        | Time zone | Type      | Execute at | Interval value | Interval field | Starts              | Ends                | Status  | Originator | character_set_client | collation_connection | Database Collation |
++-------+-----------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+---------------------+---------+------------+----------------------+----------------------+--------------------+
+| rf001 | passwords | root@localhost | SYSTEM    | RECURRING | NULL       | 1              | DAY            | 2023-01-06 10:34:00 | 2023-01-06 10:35:00 | ENABLED |          1 | utf8mb4              | utf8mb4_general_ci   | utf8mb4_general_ci |
++-------+-----------+----------------+-----------+-----------+------------+----------------+----------------+---------------------+---------------------+---------+------------+----------------------+----------------------+--------------------+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,152 @@
+Aliases => AS    (data base ထဲက column name ကို ကိုယ်ကြည့်ချင်တဲ့ name နဲ့ပြောင်းကြည့်တာ) databaseမာ မပြောင်းဘူး ကြည်တဲ့အချိန်ပဲပြောင်းတာ
+
+SELECT colname AS aliasesname 
+FROM tablename;
+
+
+Eg=>
+..........................................................
+
+SELECT name AS fullname 			(ဒီဟာဆို name ကနေ ကြည့်တဲ့အခါ fullname ဆိုပြီး table title မာပေါ်နေမယ်)
+FROM employess;
+
+
+ SELECT email AS customer_email    (ဒီဟာဆို email ကနေ ကြည့်တဲ့အခါ customer_email ဆိုပြီး table title မာပေါ်နေမယ်)
+    -> FROM employess;
+
+.............................................................
+
+
+ SELECT name AS fullname,   (ဒီဟာဆို 4ခုလုံးပြောင်းထားတဲ့အတိုင်းပေါ်မယ်)   
+    -> email AS customer_email,
+    -> age AS customer_age,
+    -> address AS customer_address
+    -> FROM employess;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+=> Aggreagate Function
+
+1.	COUNT()		(titlenameအောက်မာ ရျိတဲ့ clientကို ရေတွက်တာ)
+2.	SUM()		(ပေါင်းတာ)
+3.	MIN()		(အနည်းဆုံး value ကိုရျာတာ)
+4.	MAX()		(အများဆုံး value ကိုရျာတာ)
+5.	AVG()		(ပျမ်းမျ value ကိုရျာတာ)
+
+
+...........................................................
+
+COUNT() Syntax
+SELECT COUNT(colname)
+FROM tablename
+WHERE condition;
+
+
+Eg=>
+
+SELECT COUNT(name) FROM employess; 		(nameအောက်မာ ရျိတဲ့ clientကို ရေတွက်တာ)
+
+
+
+SELECT COUNT(address) FROM employess 	(addressအောက်မာ ရျိတဲ့ clientတွေထဲက yangonမာနေတဲ့လူတွေကိုဘဲ ရေတွက်တာ)
+  -> WHERE address ="yangon";
+
+
+
+SELECT COUNT(id) FROM employess 		(idအောက်မာ ရျိတဲ့ clientတွေထဲက လစာ 2သိန်းရတဲ့လူတွေကိုဘဲ ရေတွက်တာ)
+  -> WHERE salary =200000;
+
+...........................................................
+
+SUM() Syntax  (stringကိုပေါင်းလို့မရဘူး)
+
+SELECT SUM(colname)
+FROM tablename
+WHERE condition;
+
+Eg=>
+
+SELECT SUM(salary) FROM employess;		(salary က လစာတွေအကုန်ပေါင်းသွားမယ်)
+
+
+SELECT SUM(id) FROM employess;			(idတွေအကုန်ပေါင်းသွားမယ်)
+
+
+SELECT SUM(salary)						(salary က လစာ2သိန်းထပ်များတဲ့ လစာတွေအကုန်ပေါင်းသွားမယ်)
+    -> FROM employess WHERE salary>200000;
+
+............................................................
+
+MIN() Syntax ( အနည်းဆုံးvalueကိုရျာတာ)
+
+SELECT MIN(colname)
+FROM tablename
+WHERE condition;
+
+Eg=>
+
+SELECT MIN(salary)      (အာ့လိုဆို salaryထဲက လစာအနည်းဆုံးထွက်လာမယ်)
+ -> FROM employess;
+
+ SELECT MIN(salary)     (အာ့လိုဆို ရန်ကုန်မာနေတဲ့လူတွေထဲကမ salaryအနည်းဆုံးထွက်လာမယ်)
+  ->FROM employess
+  ->WHERE address ="Yangon";
+
+...........................................................
+
+MAX() Syntax (အများဆုံးvalueကိုရျာတာ)
+
+SELECT MAX(colname)
+FROM tablename
+WHER condition;
+
+Eg=>
+
+SELECT MAX(salary)  (အာ့လိုဆို salaryထဲက လစာအများဆုံးထွက်လာမယ်)
+ -> FROM employess;
+
+
+SELECT MAX(salary)     (အာ့လိုဆို ရန်ကုန်မာနေတဲ့လူတွေထဲကမ salaryအများဆုံးထွက်လာမယ်)
+  ->FROM employess
+  ->WHERE address ="Yangon";
+
+...........................................................
+
+AVG() Syntax (avgရျာတာ)
+
+SELECT AVG(colname)     (average က vlaue ကို qty(အရေအတွက်)နဲ့စားတာ)
+FROM tablename
+WHER condition;
+
+Eg=>
+
+SELECT AVG(salary)  (အာ့လိုဆို salaryထဲက လစာတွေထဲကAverageထွက်လာမယ်)
+ -> FROM employess;
+
+
+SELECT AVG(salary)     (အာ့လိုဆို အသက်18နျစ်ထပ်ကြီးတဲ့လူတွေထဲကမ salaryတွေထဲကAverageထွက်လာမယ်)
+  ->FROM employess
+  ->WHERE age>18;
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+=> CONCAT  (string value တစ်ခုနဲ့တစ်ခုပေါင်းတာ)
+
+CONCAT Syntax
+
+SELECT CONCAT("firstname","secondname") FROM tablename; 
+
+
+Eg=>
+
+SELECT CONCAT("Hello","Mello");         (အာ့လိုဆို HelloMello လေးကပေါင်းပေါ်တယ်)
+
+
+ SELECT CONCAT("Shello","...","Mello"); (Shello...Mello အာ့လိုပေါ်တယ်)
+
+SELECT CONCAT("Shello ","Mello");       (3ကြောင်းလုံးက Hello Mello အာ့လိုပေါ်တယ်)
+SELECT CONCAT("Shello"," Mello");
+SELECT CONCAT("hello"," ","mello");
+
+

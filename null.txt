@@ -1,0 +1,32 @@
+CREATE TABLE persons(
+name VARCHAR(255),
+password INT(255)
+);
+
+DESC persons;
+
+INSERT INTO persons('name','password')
+VALUES('Kyaw Kyaw','123456');
+
+
+INSERT INTO persons('name')
+VALUES('mya mya');
+
+INSERT INTO persons()
+VALUES();
+
+DROP TABLE persons; //for delete table
+
+
+CREATE TABLE persons(
+name VARCHAR(255) NOT NULL,
+password VARCHAR(255)
+);
+
+INSERT INTO persons(name,password)
+VALUES('ko ko','00000');     
+
+INSERT INTO persons(name)    ** warning // insert blur value  // real server mar so yin ** error message // we can't insert data
+VALUES('kyaw kyaw');
+
+INSERT INTO perons();
